@@ -1,1 +1,76 @@
-Hallo internet ich bin phalrax
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Countdown Button</title>
+  <style>
+    body {
+      margin: 0;
+      background-color: #0b0b0b;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+
+    .countdown-button {
+      background-color: #cc0000;
+      color: #fff;
+      border: none;
+      padding: 2rem 4rem;
+      font-size: 3rem;
+      font-weight: bold;
+      border-radius: 4px;
+      cursor: default;
+      text-transform: uppercase;
+      font-family: Arial, sans-serif;
+      letter-spacing: 0.1em;
+      transition: background-color 0.2s ease;
+      max-width: 90vw;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    /* Für kleine Bildschirme anpassen */
+    @media (max-width: 480px) {
+      .countdown-button {
+        padding: 1.5rem 2rem;
+        font-size: 2rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <button class="countdown-button" id="countdown">--:--:--</button>
+
+  <script>
+    const countdownElement = document.getElementById("countdown");
+    const targetDateUTC = Date.UTC(2025, 5, 17, 14, 15, 0);
+
+    function updateCountdown() {
+      const now = Date.now();
+      const diff = targetDateUTC - now;
+
+      if (diff <= 0) {
+        countdownElement.textContent = "00:00:00";
+        clearInterval(interval);
+        return;
+      }
+
+      const hours = Math.floor(diff / 1000 / 60 / 60);
+      const minutes = Math.floor((diff / 1000 / 60) % 60);
+      const seconds = Math.floor((diff / 1000) % 60);
+
+      countdownElement.textContent =
+        String(hours).padStart(2, "0") + ":" +
+        String(minutes).padStart(2, "0") + ":" +
+        String(seconds).padStart(2, "0");
+    }
+
+    const interval = setInterval(updateCountdown, 1000);
+    updateCountdown();
+  </script>
+</body>
+</html>
