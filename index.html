@@ -33,7 +33,6 @@
       text-overflow: ellipsis;
     }
 
-    /* Für kleine Bildschirme anpassen */
     @media (max-width: 480px) {
       .countdown-button {
         padding: 1.5rem 2rem;
@@ -47,6 +46,7 @@
 
   <script>
     const countdownElement = document.getElementById("countdown");
+    // 17. Juni 2025, 15:15 Uhr Portugal-Zeit = 14:15 UTC
     const targetDateUTC = Date.UTC(2025, 5, 17, 14, 15, 0);
 
     function updateCountdown() {
